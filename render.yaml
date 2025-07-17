@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: darhusam-client
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: dist
+  
