@@ -24,6 +24,8 @@ const Login = () => {
     setError('');
 
     try {
+
+
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/admin/login`, formData);
       localStorage.setItem('adminToken', response.data.token);
       navigate('/admin/dashboard');
