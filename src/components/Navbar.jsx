@@ -77,7 +77,7 @@ function Navbar() {
           <div className="flex items-center space-x-4 space-x-reverse">
             <a href="/" className="block">
               <img
-                src="/public/daaralhosam.jpg"
+                src="/daaralhosam.jpg"
                 alt="Logo"
                 className={`transition-all duration-300 ${
                   isScrolled ? 'h-16' : 'h-20'
