@@ -97,18 +97,19 @@ export default function EnhancedNews() {
                 style={{ width: `${100 / cardsToShow}%` }}
               >
                 {/* Image */}
-                <div className="h-56 overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
-                  <img
-                    src={
-                      evt.imageUrl.startsWith("http")
-                        ? evt.imageUrl
-                        : `${import.meta.env.VITE_BACKEND_URL}${evt.imageUrl}`
-                    }
-                    alt={evt.title}
-                    className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
-                  />
-                </div>
+               <div className="h-56 overflow-hidden relative">
+  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
+  <img
+    src={
+      evt.imageUrl?.startsWith("http")
+        ? evt.imageUrl
+        : `${import.meta.env.VITE_BACKEND_URL}${evt.imageUrl?.startsWith("/") ? "" : "/"}${evt.imageUrl || ""}`
+    }
+    alt={evt.title}
+    className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
+  />
+</div>
+
 
                 {/* Content */}
                 <div className="p-6 flex-grow flex flex-col">

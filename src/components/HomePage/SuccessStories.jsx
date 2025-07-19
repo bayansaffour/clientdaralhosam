@@ -126,24 +126,29 @@ export default function SuccessStoriesCards() {
               </div>
               
               {/* Image Container */}
-              <div className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent z-10"></div>
-                <img
-                  src={story.imageUrl?.startsWith("http")
-                    ? story.imageUrl
-                    : `${import.meta.env.VITE_BACKEND_URL}${story.imageUrl}`}
-                  alt={story.name}
-                  className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
-                  onError={(e) => {
-                    e.target.src = "/placeholder-image.jpg";
-                  }}
-                />
-                
-                {/* Floating Star Badge */}
-                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-full p-3 shadow-lg z-20">
-                  <Star className="w-5 h-5 text-[#780C28] fill-current" />
-                </div>
-              </div>
+           <div className="relative overflow-hidden">
+  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent z-10"></div>
+  <img
+    src={
+      story.imageUrl?.startsWith("http")
+        ? story.imageUrl
+        : `${import.meta.env.VITE_BACKEND_URL}${
+            story.imageUrl?.startsWith("/") ? "" : "/"
+          }${story.imageUrl || ""}`
+    }
+    alt={story.name}
+    className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+    onError={(e) => {
+      e.target.src = "/placeholder-image.jpg";
+    }}
+  />
+
+  {/* Floating Star Badge */}
+  <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-full p-3 shadow-lg z-20">
+    <Star className="w-5 h-5 text-[#780C28] fill-current" />
+  </div>
+</div>
+
 
               {/* Content */}
               <div className="relative p-8">

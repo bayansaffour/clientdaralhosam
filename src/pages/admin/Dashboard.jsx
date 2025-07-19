@@ -1642,34 +1642,50 @@ const Dashboard = () => {
                         className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
                       >
                         {/* صورة المورد */}
-                        <div className="relative h-48 bg-gray-100">
-                          {resource.images && resource.images.length > 0 ? (
-                            <img
-                              src={resource.images[0].startsWith('http') ? resource.images[0] : `${import.meta.env.VITE_BACKEND_URL}${resource.images[0]}`}
-                              alt={resource.title}
-                              className="w-full h-full object-cover"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                              {resource.category === 'videos' && <Video className="w-12 h-12 text-gray-400" />}
-                              {resource.category === 'pdf' && <FileText className="w-12 h-12 text-gray-400" />}
-                              {resource.category === 'presentations' && <Presentation className="w-12 h-12 text-gray-400" />}
-                              {resource.category === 'articles' && <Newspaper className="w-12 h-12 text-gray-400" />}
-                            </div>
-                          )}
-                          <div className="absolute top-2 right-2">
-                            <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                              resource.category === 'articles' ? 'bg-blue-100 text-blue-800' :
-                              resource.category === 'videos' ? 'bg-red-100 text-red-800' :
-                              resource.category === 'presentations' ? 'bg-purple-100 text-purple-800' :
-                              'bg-green-100 text-green-800'
-                            }`}>
-                              {resource.category === 'articles' ? 'مقال' :
-                               resource.category === 'videos' ? 'فيديو' :
-                               resource.category === 'presentations' ? 'عرض تقديمي' : 'PDF'}
-                            </span>
-                          </div>
-                        </div>
+                       <div className="relative h-48 bg-gray-100">
+  {resource.images && resource.images.length > 0 ? (
+    <img
+      src={
+        resource.images[0].startsWith("http")
+          ? resource.images[0]
+          : `${import.meta.env.VITE_BACKEND_URL}${
+              resource.images[0].startsWith("/") ? "" : "/"
+            }${resource.images[0]}`
+      }
+      alt={resource.title}
+      className="w-full h-full object-cover"
+    />
+  ) : (
+    <div className="w-full h-full flex items-center justify-center bg-gray-100">
+      {resource.category === "videos" && <Video className="w-12 h-12 text-gray-400" />}
+      {resource.category === "pdf" && <FileText className="w-12 h-12 text-gray-400" />}
+      {resource.category === "presentations" && <Presentation className="w-12 h-12 text-gray-400" />}
+      {resource.category === "articles" && <Newspaper className="w-12 h-12 text-gray-400" />}
+    </div>
+  )}
+
+  <div className="absolute top-2 right-2">
+    <span
+      className={`px-3 py-1 rounded-full text-sm font-medium ${
+        resource.category === "articles"
+          ? "bg-blue-100 text-blue-800"
+          : resource.category === "videos"
+          ? "bg-red-100 text-red-800"
+          : resource.category === "presentations"
+          ? "bg-purple-100 text-purple-800"
+          : "bg-green-100 text-green-800"
+      }`}
+    >
+      {resource.category === "articles"
+        ? "مقال"
+        : resource.category === "videos"
+        ? "فيديو"
+        : resource.category === "presentations"
+        ? "عرض تقديمي"
+        : "PDF"}
+    </span>
+  </div>
+</div>
 
                         {/* محتوى المورد */}
                         <div className="p-4">
