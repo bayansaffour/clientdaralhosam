@@ -1,0 +1,8 @@
+
+services:
+  - type: static
+    name: clientdaralhosam
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    branch: master  # غيّر إذا تستخدم فرع ثاني
