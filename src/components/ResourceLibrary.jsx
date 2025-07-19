@@ -87,7 +87,7 @@ const ResourceLibrary = () => {
       if (resource.images && resource.images.length > 0) {
         const imageUrl = resource.images[0]?.startsWith('http') 
           ? resource.images[0] 
-          : `${import.meta.env.VITE_BACKEND_URL}${resource.images[0]}`;
+          : `${import.meta.env.VITE_BACKEND_URL}/${resource.images[0]}`;
         
         const response = await fetch(imageUrl);
         const blob = await response.blob();
@@ -255,7 +255,7 @@ const ResourceLibrary = () => {
                   <div className="relative h-48 flex items-center justify-center bg-gray-100">
                     {resource.images && resource.images.length > 0 ? (
                       <img 
-                        src={resource.images[0]?.startsWith('http') ? resource.images[0] : `${import.meta.env.VITE_BACKEND_URL}${resource.images[0]}`}
+                        src={resource.images[0]?.startsWith('http') ? resource.images[0] : `${import.meta.env.VITE_BACKEND_URL}/${resource.images[0]}`}
                         alt={resource.title}
                         className="w-full h-full object-cover"
                       />
@@ -313,7 +313,7 @@ const ResourceLibrary = () => {
                       ) : resource.images && resource.images.length > 0 ? (
                         <>
                           <a
-                            href={resource.images[0]?.startsWith('http') ? resource.images[0] : `${import.meta.env.VITE_BACKEND_URL}${resource.images[0]}`}
+                            href={resource.images[0]?.startsWith('http') ? resource.images[0] : `${import.meta.env.VITE_BACKEND_URL}/${resource.images[0]}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center text-sm font-medium px-4 py-2 rounded bg-[#780C28] text-white hover:bg-opacity-90 transition-colors"

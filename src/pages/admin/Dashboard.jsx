@@ -1650,7 +1650,7 @@ const Dashboard = () => {
           ? resource.images[0]
           : `${import.meta.env.VITE_BACKEND_URL}${
               resource.images[0].startsWith("/") ? "" : "/"
-            }${resource.images[0]}`
+            }/${resource.images[0]}`
       }
       alt={resource.title}
       className="w-full h-full object-cover"
