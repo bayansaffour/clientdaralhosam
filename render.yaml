@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: clientdaralhosam
-    env: static
-    buildCommand: npm run build
-    staticPublishPath: dist
-  
