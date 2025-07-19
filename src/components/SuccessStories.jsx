@@ -73,27 +73,28 @@ const SuccessStories = () => {
     },
   ];
 
-  useEffect(() => {
-    const fetchStories = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/success`);
-        if (response.data && response.data.length > 0) {
-          setStories(response.data);
-        } else {
-          setStories(dummyStories);
-        }
-      } catch (error) {
-        console.error("Error fetching stories:", error);
-        setError("حدث خطأ أثناء تحميل قصص النجاح");
+ useEffect(() => {
+  const fetchStories = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/success`);
+      if (response.data && response.data.data && response.data.data.length > 0) {
+        setStories(response.data.data);
+      } else {
         setStories(dummyStories);
-      } finally {
-        setLoading(false);
       }
-    };
+    } catch (error) {
+      console.error("Error fetching stories:", error);
+      setError("حدث خطأ أثناء تحميل قصص النجاح");
+      setStories(dummyStories);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchStories();
-  }, []);
+  fetchStories();
+}, []);
+
 
   const closeStoryDetails = () => {
     setActiveStory(null);

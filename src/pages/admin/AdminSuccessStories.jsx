@@ -32,18 +32,17 @@ const AdminSuccessStories = () => {
   }, [viewMode]);
 
   const fetchStories = async () => {
-    try {
-      const token = localStorage.getItem("adminToken");
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/success`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setStories(response.data);
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to fetch stories");
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/success`);
+    setStories(response.data.data); // لو بياناتك داخل خاصية data
+  } catch (err) {
+    console.error(err);
+    setError(err.response?.data?.message || "Failed to fetch stories");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const handleRestore = async (id) => {
     try {
