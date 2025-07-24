@@ -292,7 +292,7 @@ export default function News() {
                 >
                   <div className="relative">
                     <img
-                      src={`${import.meta.env.VITE_BACKEND_URL}/${article.imageUrl}`}
+                      src={`${import.meta.env.VITE_BACKEND_URL}${article.imageUrl}`}
                       alt={article.title}
                       className="w-full h-48 object-cover"
                       onError={(e) => {
@@ -613,18 +613,19 @@ export default function News() {
                     key={item._id}
                     className="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all cursor-pointer"
                   >
-                    <img
-                      src={
-                        (item.type === "video" ? item.thumbnail : item.url).startsWith("http")
-                          ? (item.type === "video" ? item.thumbnail : item.url)
-                          : `${import.meta.env.VITE_BACKEND_URL}/${item.type === "video" ? item.thumbnail : item.url}`
-                      }
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
-                      onError={(e) => {
-                        e.target.src = "/placeholder-image.jpg";
-                      }}
-                    />
+                   <img
+  src={
+    (item.type === "video" ? item.thumbnail : item.url)?.startsWith("http")
+      ? (item.type === "video" ? item.thumbnail : item.url)
+      : `${import.meta.env.VITE_BACKEND_URL}${item.type === "video" ? item.thumbnail : item.url}`
+  }
+  alt={item.title}
+  className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
+  onError={(e) => {
+    e.target.src = "/placeholder-image.jpg";
+  }}
+/>
+
 
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
                       {item.type === "video" && (
