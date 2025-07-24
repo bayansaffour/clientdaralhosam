@@ -103,7 +103,7 @@ export default function EnhancedNews() {
     src={
       evt.imageUrl?.startsWith("http")
         ? evt.imageUrl
-        : `${import.meta.env.VITE_BACKEND_URL}${evt.imageUrl?.startsWith("/") ? "" : "/"}${evt.imageUrl || ""}`
+        : `${import.meta.env.VITE_BACKEND_URL}/${evt.imageUrl?.startsWith("/") ? "" : "/"}/${evt.imageUrl || ""}`
     }
     alt={evt.title}
     className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
