@@ -4,24 +4,23 @@ import axios from "axios";
 import { Calendar, MapPin, Clock, Users } from 'lucide-react';
 
 export default function EnhancedNews() {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || "https://darserver.onrender.com";
-
   const [events, setEvents] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(3);
   const navigate = useNavigate();
 
+  // Fetch events
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const { data } = await axios.get(`${backendUrl}/api/home/events`);
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/home/events`);
         setEvents(data);
       } catch (err) {
         console.error("Error fetching events:", err);
       }
     };
     fetchEvents();
-  }, [backendUrl]);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -98,18 +97,19 @@ export default function EnhancedNews() {
                 style={{ width: `${100 / cardsToShow}%` }}
               >
                 {/* Image */}
-                <div className="h-56 overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
-                  <img
-                    src={
-                      evt.imageUrl?.startsWith("http")
-                        ? evt.imageUrl
-                        : `${backendUrl}${evt.imageUrl?.startsWith("/") ? "" : "/"}${evt.imageUrl || ""}`
-                    }
-                    alt={evt.title}
-                    className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
-                  />
-                </div>
+               <div className="h-56 overflow-hidden relative">
+  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
+  <img
+    src={
+      evt.imageUrl?.startsWith("http")
+        ? evt.imageUrl
+        : `${import.meta.env.VITE_BACKEND_URL}${evt.imageUrl?.startsWith("/") ? "" : "/"}${evt.imageUrl || ""}`
+    }
+    alt={evt.title}
+    className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
+  />
+</div>
+
 
                 {/* Content */}
                 <div className="p-6 flex-grow flex flex-col">
@@ -121,6 +121,7 @@ export default function EnhancedNews() {
                       ? `${evt.description.substring(0, 100)}…`
                       : evt.description}
                   </p>
+
 
                   <div className="bg-gradient-to-r from-[#780C28] to-[#a01040] text-white p-3 rounded-lg mb-4 text-center">
                     <div className="text-xs opacity-90">التاريخ</div>
@@ -212,9 +213,10 @@ export default function EnhancedNews() {
             <button
               key={idx}
               onClick={() => setCurrentPage(idx)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentPage === idx ? "bg-[#780C28] w-6" : "bg-gray-300 hover:bg-gray-400"
-              }`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${currentPage === idx
+                  ? "bg-[#780C28] w-6"
+                  : "bg-gray-300 hover:bg-gray-400"
+                }`}
             />
           ))}
         </div>
