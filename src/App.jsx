@@ -2,12 +2,11 @@
 
 import React from "react";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
-
 import VolunteerForm from "./components/joinUs/VolunteerForm";
 import TrainerForm from "./components/joinUs/TrainerForm";
 import TraineeForm from "./components/joinUs/TraineeForm";
