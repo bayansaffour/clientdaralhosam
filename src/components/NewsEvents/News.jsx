@@ -607,52 +607,60 @@ export default function News() {
               >
                 معرض الصور والفيديو
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {media.map((item) => (
-                  <div
-                    key={item._id}
-                    className="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all cursor-pointer"
-                  >
-                   <img
-  src={
-    (item.type === "video" ? item.thumbnail : item.url)?.startsWith("http")
-      ? (item.type === "video" ? item.thumbnail : item.url)
-      : `${import.meta.env.VITE_BACKEND_URL}${item.type === "video" ? item.thumbnail : item.url}`
-  }
-  alt={item.title}
-  className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
-  onError={(e) => {
-    e.target.src = "/placeholder-image.jpg";
-  }}
-/>
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {media.map((item) => {
+    const rawUrl = item.type === "video" ? item.thumbnail : item.url;
 
+    const imageUrl = rawUrl
+      ? rawUrl.startsWith("http")
+        ? rawUrl
+        : `${import.meta.env.VITE_BACKEND_URL}${rawUrl}`
+      : "/placeholder-image.jpg";
 
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
-                      {item.type === "video" && (
-                        <div className="w-16 h-16 rounded-full bg-white bg-opacity-75 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform scale-90 group-hover:scale-100">
-                          <Play size={32} fill="#780C28" color="#780C28" />
-                        </div>
-                      )}
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                      <h4 className="text-white font-bold mb-1">
-                        {item.title}
-                      </h4>
-                      <p className="text-white text-sm opacity-80">
-                        {item.description}
-                      </p>
-                    </div>
-                    {item.type === "image" && (
-                      <div
-                        className="absolute top-3 left-3 bg-white rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all"
-                        style={{ color: "#6E8E59" }}
-                      >
-                        <Image size={18} />
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+    return (
+      <div
+        key={item._id}
+        className="relative group rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all cursor-pointer"
+      >
+        <img
+          src={imageUrl}
+          alt={item.title || "صورة"}
+          className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
+          onError={(e) => {
+            e.target.src = "/placeholder-image.jpg";
+          }}
+        />
+
+        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
+          {item.type === "video" && (
+            <div className="w-16 h-16 rounded-full bg-white bg-opacity-75 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform scale-90 group-hover:scale-100">
+              <Play size={32} fill="#780C28" color="#780C28" />
+            </div>
+          )}
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+          <h4 className="text-white font-bold mb-1">
+            {item.title}
+          </h4>
+          <p className="text-white text-sm opacity-80">
+            {item.description}
+          </p>
+        </div>
+
+        {item.type === "image" && (
+          <div
+            className="absolute top-3 left-3 bg-white rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all"
+            style={{ color: "#6E8E59" }}
+          >
+            <Image size={18} />
+          </div>
+        )}
+      </div>
+    );
+  })}
+</div>
+
             </div>
           )}
         </div>
