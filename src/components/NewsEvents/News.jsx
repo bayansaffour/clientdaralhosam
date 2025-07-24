@@ -922,7 +922,7 @@ export default function News() {
                 >
                   <div className="relative">
                     <img
-                      src={`${import.meta.env.VITE_BACKEND_URL}${article.imageUrl}`}
+                      src={`${import.meta.env.VITE_BACKEND_URL}/${article.imageUrl}`}
                       alt={article.title}
                       className="w-full h-48 object-cover"
                       onError={(e) => {
@@ -985,7 +985,7 @@ export default function News() {
 
               <div className="relative mb-6">
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}${selectedArticle.imageUrl}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${selectedArticle.imageUrl}`}
                   alt={selectedArticle.title}
                   className="w-full h-64 object-cover rounded-lg shadow-md"
                   onError={(e) => {
@@ -1143,7 +1143,7 @@ export default function News() {
                   >
                     <div className="md:w-1/3">
                       <img
-                        src={`${import.meta.env.VITE_BACKEND_URL}${event.imageUrl}`}
+                        src={`${import.meta.env.VITE_BACKEND_URL}/${event.imageUrl}`}
                         alt={event.title}
                         className="w-full h-48 object-cover"
                         onError={(e) => {
@@ -1247,7 +1247,7 @@ export default function News() {
                       src={
                         (item.type === "video" ? item.thumbnail : item.url).startsWith("http")
                           ? (item.type === "video" ? item.thumbnail : item.url)
-                          : `${import.meta.env.VITE_BACKEND_URL}${item.type === "video" ? item.thumbnail : item.url}`
+                          : `${import.meta.env.VITE_BACKEND_URL}/${item.type === "video" ? item.thumbnail : item.url}`
                       }
                       alt={item.title}
                       className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
