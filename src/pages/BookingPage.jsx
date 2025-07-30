@@ -8,7 +8,7 @@ const halls = [
   {
     id: 1,
     name: "قاعة 1",
-    capacity: 100,
+    capacity: 30 ,
     specs: "نظام صوتي متطور، إضاءة احترافية، شاشة عرض",
     image: "/hall1.jpg",
     availableTimes: ["09:00", "12:00", "15:00", "18:00"],
@@ -16,7 +16,7 @@ const halls = [
   {
     id: 2,
     name: "قاعة 2",
-    capacity: 150,
+    capacity: 15 ,
     specs: "مكيف هواء، كراسي مريحة، طاولات قابلة للتعديل",
     image: "/hall2.jpg",
     availableTimes: ["10:00", "13:00", "16:00", "19:00"],
